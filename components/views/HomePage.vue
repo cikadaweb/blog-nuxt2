@@ -29,6 +29,10 @@ interface iSelectedUser {
   text: string
 }
 
+interface IState {
+  chosenUser: iSelectedUser
+}
+
 export default defineComponent({
   name: 'HomePage',
   components: {
@@ -40,7 +44,7 @@ export default defineComponent({
         id: null,
         text: 'Выбрать'
       } as iSelectedUser,
-    }
+    } as IState
   },
   computed: {
     users(): IUser[] {
