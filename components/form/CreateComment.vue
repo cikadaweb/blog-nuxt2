@@ -5,7 +5,7 @@
     <div class="create-comment__row">
       <div class="create-comment__column">
         <BaseInput
-          v-model:value="userName"
+          v-model="userName"
           type="text"
           name="userName"
           placeholder="Введите имя"
@@ -16,7 +16,7 @@
       </div>
       <div class="create-comment__column">
         <BaseTextarea
-          v-model:value="userText"
+          v-model="userText"
           type="text"
           name="userText"
           placeholder="Введите текст записи"
