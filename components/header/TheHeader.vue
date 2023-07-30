@@ -175,7 +175,7 @@ import { ref } from 'vue';
     left: 0;
     height: 80px;
     background-color: $bg-primary;
-    z-index: 2;
+    z-index: 5;
     box-shadow: 0 2px 12px 0 rgb(0 0 0 / 30%);
   }
   .menu__list {
