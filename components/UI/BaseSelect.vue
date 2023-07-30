@@ -72,11 +72,11 @@ export default defineComponent({
     },
     selectOption(option: IUser) {
       this.isShowOptions = false;
-      this.$emit('update-select', option.name);
+      this.$emit('update-select', option);
     },
     clearSelect() {
       this.isShowOptions = false;
-      this.$emit('clear-select', 'Выбрать');
+      this.$emit('clear-select');
     },
     closeSelect() {
       this.isShowOptions = false;
@@ -117,6 +117,7 @@ export default defineComponent({
   top: 50px;
   left: 0;
   width: 100%;
+  z-index: 5;
 
   max-height: 300px;
   background-color: $bg-white;
