@@ -1,20 +1,16 @@
 <template>
   <div>
-    <button>Button</button>
-    <button class="btn_scss">Button + SCSS</button>
+    <HomePage />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from 'vue';
+import HomePage from '@/components/views/HomePage.vue';
 
-export default Vue.extend({
-  name: 'IndexPage',
+export default defineComponent({
+  components: {
+    HomePage
+  }
 })
 </script>
-
-<style lang="scss" scoped>
-.btn_scss {
-  @include button-reset;
-}
-</style>
