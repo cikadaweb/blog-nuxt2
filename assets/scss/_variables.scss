@@ -1,7 +1,21 @@
 $bg-primary: #12B488;
 $bg-secondary: #E9E9E9;
 $bg-white: #FFFFFF;
+$bg-disabled: rgba(220, 220, 222, 1);
+$bg-danger: rgba(238, 66, 34, 1);
+$bg-warning: orange;
 
 $font-primary: #000000;
 $font-white: #FFFFFF;
 $font-white-hover: #b6b6b6;
+$font-disabled: rgba(142, 142, 142, 1);
+$font-placeholder: rgba(217, 217, 217, 1);
+
+$border-default: rgba(0, 0, 0, 0.15);
+$border-hover: rgba(18, 19, 22, 0.5);
+$border-active: rgba(28, 28, 28, 1);
+$border-error: rgba(238, 66, 34, 1);
+$border-disabled: rgba(0, 0, 0, 0.15);
+
+$btn-padding: 12px 16px;
+$btn-radius: 4px;
