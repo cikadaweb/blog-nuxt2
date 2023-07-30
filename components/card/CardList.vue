@@ -9,9 +9,13 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import { IPost } from '@/store/posts';
+import CardItem from '@/components/card/CardItem.vue'
 
 export default defineComponent({
   name: 'CardList',
+  components: {
+    CardItem
+  },
   props: {
     items: {
       type: Array as PropType<IPost[]>,
