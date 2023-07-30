@@ -32,6 +32,7 @@ export default {
     '@nuxtjs/style-resources',
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    'nuxt-symbol-icons'
   ],
 
   styleResources: {
