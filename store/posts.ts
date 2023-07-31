@@ -51,33 +51,25 @@ export const mutations = {
 
 export const actions = {
   async fetchPosts({ commit }) {
-    const response = await this.$axios.get(
-      'https://jsonplaceholder.typicode.com/posts'
-    );
+    const response = await this.$axios.get('/posts');
     const data: IPost[] = await response.data;
     commit('setPosts', data);
   },
   async fetchPostsByUserId({ commit, dispatch }, id: number) {
-    const response = await this.$axios.get(
-      `https://jsonplaceholder.typicode.com/posts?userId=${id}`
-    );
+    const response = await this.$axios.get(`/posts?userId=${id}`);
     const data: IPost[] = await response.data;
     await dispatch('common/changeAlertStatus', { info: 'Посты данного пользователя были загружены', status: 'success' }, { root: true });
     commit('setPosts', data);
   },
   async fetchCurrentPost({ commit, dispatch }, id: number) {
-    const response = await this.$axios.get(
-      `https://jsonplaceholder.typicode.com/posts/${id}`
-    );
+    const response = await this.$axios.get(`/posts/${id}`);
     const data: IPost = await response.data;
     await dispatch('users/fetchCurrentPostUser', data.userId, { root: true });
     await dispatch('fetchCurrentPostComments', data.id);
     commit('setCurrentPost', data);
   },
   async fetchCurrentPostComments({ commit }, id: number) {
-    const response = await this.$axios.get(
-      `https://jsonplaceholder.typicode.com/posts/${id}/comments`
-    );
+    const response = await this.$axios.get(`/posts/${id}/comments`);
     const data: IComment[] = await response.data;
     commit('setCurrentPostComments', data);
   },

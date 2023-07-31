@@ -52,17 +52,13 @@ export const mutations = {
 
 export const actions = {
   async fetchUsers({ commit }) {
-    const response = await this.$axios.get(
-      'https://jsonplaceholder.typicode.com/users'
-    )
+    const response = await this.$axios.get('/users');
     const data = await response.data;
-    commit('setUsers', data)
+    commit('setUsers', data);
   },
   async fetchCurrentPostUser({ commit }, id: number) {
-    const response = await this.$axios.get(
-      `https://jsonplaceholder.typicode.com/users/${id}`
-    )
+    const response = await this.$axios.get(`/users/${id}`);
     const data = await response.data;
-    commit('setCurrentPostUser', data)
+    commit('setCurrentPostUser', data);
   },
 }
