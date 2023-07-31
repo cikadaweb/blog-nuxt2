@@ -4,14 +4,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
+<script>
 import PostPage from '@/components/views/PostPage.vue';
 
-export default defineComponent({
-  components: {
-    PostPage
+  export default {
+    components: {
+      PostPage
+    }
   }
-})
 </script>

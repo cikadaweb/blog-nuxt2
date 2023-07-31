@@ -16,48 +16,48 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'BaseTextarea',
-  emits: ['input'],
-  props: {
-    value: {
-      type: String,
-      default: ''
+<script>
+  export default {
+    name: 'BaseTextarea',
+    props: {
+      value: {
+        type: String,
+        default: ''
+      },
+      disabled: {
+        type: Boolean,
+        required: false
+      },
+      type: {
+        type: String,
+        default: 'text'
+      },
+      name: {
+        type: String,
+        required: true
+      },
+      label: {
+        type: String,
+        required: true,
+      },
+      placeholder: {
+        type: String,
+        required: true,
+      },
+      width: {
+        type: String,
+        default: '300px',
+      }
     },
-    disabled: {
-      type: Boolean,
-      required: false
-    },
-    type: {
-      type: String,
-      default: 'text'
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    label: {
-      type: String,
-      required: false,
-    },
-    placeholder: {
-      type: String,
-      required: false,
-    },
-    width: {
-      type: String,
-      default: '300px',
-    }
-  },
-  methods: {
-    updateValue(event: Event) {
-      this.$emit('input', event.target.value)
+    emits: ['input'],
+    methods: {
+      updateValue(event) {
+        if (event.target) {
+          this.$emit('input', event.target.value);
+        }
+      }
     }
   }
-});
 </script>
 
 <style lang="scss" scoped>

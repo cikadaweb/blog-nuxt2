@@ -1,46 +1,38 @@
-export interface IAlert {
-  info: null | string,
-  status: 'success' | 'danger' | 'warning' | ''
-}
 
-interface IState {
-  loading: boolean,
-  alert: IAlert,
-}
 
 export const state = () => ({
   loading: false,
   alert: {
     info: null,
-    status: '' as 'success' | 'danger' | 'warning' | ''
-  } as IAlert
-} as IState)
+    status: ''
+  }
+})
 
 export const getters = {
-  getLoading(state: IState) {
+  getLoading(state) {
     return state.loading;
   },
-  getAlert(state: IState) {
+  getAlert(state) {
     return state.alert;
   },
 }
 
 export const mutations = {
-  setLoading(state: IState, payload: boolean) {
+  setLoading(state, payload) {
     state.loading = payload;
   },
-  setAlertInfo(state: IState, {info, status}: IAlert) {
+  setAlertInfo(state, {info, status}) {
     state.alert.info = info;
     state.alert.status = status;
   },
-  clearAlert(state: IState) {
+  clearAlert(state) {
     state.alert.info = null;
     state.alert.status = '';
   },
 }
 
 export const actions = {
-  changeAlertStatus({ commit }, alertInfo: IAlert) {
+  changeAlertStatus({ commit }, alertInfo) {
     commit('setAlertInfo', {info: alertInfo.info, status: alertInfo.status});
     setTimeout(() => {
       commit('clearAlert');

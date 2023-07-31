@@ -35,37 +35,31 @@
   </form>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script>
 import BaseInput from '@/components/UI/BaseInput.vue';
 import BaseTextarea from '@/components/UI/BaseTextarea.vue';
 import BaseButton from '@/components/UI/BaseButton.vue';
 
-interface IState {
-  userName: string,
-  userText: string
-}
-
-export default defineComponent({
-  name: 'CreateComment',
-  components: {
-    BaseInput, BaseTextarea, BaseButton
-  },
-  data() {
-    return {
-      userName: '',
-      userText: ''
-    } as IState
-  },
-  methods: {
-    submitForm() {
-      console.log({
-        username: this.userName,
-        userText: this.userText
-      });
+  export default {
+    name: 'CreateComment',
+    components: {
+      BaseInput, BaseTextarea, BaseButton
     },
+    data() {
+      return {
+        userName: '',
+        userText: ''
+      }
+    },
+    methods: {
+      submitForm() {
+        console.log({
+          username: this.userName,
+          userText: this.userText
+        });
+      },
+    }
   }
-});
 </script>
 
 <style lang="scss" scoped>

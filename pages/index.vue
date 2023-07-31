@@ -4,13 +4,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HomePage from '@/components/views/HomePage.vue';
+<script>
+import HomePage from '@/components/views/HomePage.vue'
 
-export default defineComponent({
+export default {
   components: {
     HomePage
   }
-})
+}
 </script>

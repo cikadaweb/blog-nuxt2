@@ -1,50 +1,30 @@
-export interface IPost {
-  userId: number,
-  id: number,
-  title: string,
-  body: string
-}
-
-export interface IComment {
-  postId: number,
-  id: number,
-  name: string,
-  email: string,
-  body: string
-}
-
-interface IState {
-  posts: IPost[],
-  currentPost: IPost,
-  currentPostComments: IComment[],
-}
 
 export const state = () => ({
-  posts: [] as IPost[],
-  currentPost: {} as IPost,
-  currentPostComments: [] as IComment[]
-} as IState)
+  posts: [],
+  currentPost: {},
+  currentPostComments: []
+})
 
 export const getters = {
-  getPosts(state: IState) {
+  getPosts(state) {
     return state.posts;
   },
-  getCurrentPost(state: IState) {
+  getCurrentPost(state) {
     return state.currentPost;
   },
-  getCurrentPostComments(state: IState) {
+  getCurrentPostComments(state) {
     return state.currentPostComments;
   },
 }
 
 export const mutations = {
-  setPosts(state: IState, payload: IPost[]) {
+  setPosts(state, payload) {
     state.posts = payload;
   },
-  setCurrentPost(state: IState, payload: IPost) {
+  setCurrentPost(state, payload) {
     state.currentPost = payload;
   },
-  setCurrentPostComments(state: IState, payload: IComment[]) {
+  setCurrentPostComments(state, payload) {
     state.currentPostComments = payload;
   },
 }
@@ -52,25 +32,25 @@ export const mutations = {
 export const actions = {
   async fetchPosts({ commit }) {
     const response = await this.$axios.get('/posts');
-    const data: IPost[] = await response.data;
+    const data = await response.data;
     commit('setPosts', data);
   },
-  async fetchPostsByUserId({ commit, dispatch }, id: number) {
+  async fetchPostsByUserId({ commit, dispatch }, id) {
     const response = await this.$axios.get(`/posts?userId=${id}`);
-    const data: IPost[] = await response.data;
+    const data = await response.data;
     await dispatch('common/changeAlertStatus', { info: 'Посты данного пользователя были загружены', status: 'success' }, { root: true });
     commit('setPosts', data);
   },
-  async fetchCurrentPost({ commit, dispatch }, id: number) {
+  async fetchCurrentPost({ commit, dispatch }) {
     const response = await this.$axios.get(`/posts/${id}`);
-    const data: IPost = await response.data;
+    const data = await response.data;
     await dispatch('users/fetchCurrentPostUser', data.userId, { root: true });
     await dispatch('fetchCurrentPostComments', data.id);
     commit('setCurrentPost', data);
   },
-  async fetchCurrentPostComments({ commit }, id: number) {
+  async fetchCurrentPostComments({ commit }, id) {
     const response = await this.$axios.get(`/posts/${id}/comments`);
-    const data: IComment[] = await response.data;
+    const data = await response.data;
     commit('setCurrentPostComments', data);
   },
 }

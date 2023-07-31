@@ -30,59 +30,56 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { IUser } from '@/store/users';
-
-export default defineComponent({
-  name: 'BaseSelect',
-  props: {
-    options: {
-      type: Array as PropType<IUser[]>,
-      default() {
-        return []
+<script>
+  export default {
+    name: 'BaseSelect',
+    props: {
+      options: {
+        type: Array,
+        default() {
+          return []
+        }
+      },
+      value : {
+        type: String,
+        default: ''
+      },
+      width: {
+        type: String,
+        default: '300px'
       }
     },
-    value : {
-      type: String,
-      default: ''
-    },
-    width: {
-      type: String,
-      default: '300px'
-    }
-  },
-  emits: ['update-select', 'clear-select'],
-  data() {
-    return {
-      isShowOptions: false
-    }
-  },
-  computed: {
-    isOptionChosen() {
-      if (!this.options.some((option: IUser) => option.name === this.value)) {
-        return false;
+    emits: ['update-select', 'clear-select'],
+    data() {
+      return {
+        isShowOptions: false
       }
-      return true;
-    }
-  },
-  methods: {
-    toggleOptionsVisible() {
-      this.isShowOptions = !this.isShowOptions;
     },
-    selectOption(option: IUser) {
-      this.isShowOptions = false;
-      this.$emit('update-select', option);
+    computed: {
+      isOptionChosen() {
+        if (!this.options.some((option) => option.name === this.value)) {
+          return false;
+        }
+        return true;
+      }
     },
-    clearSelect() {
-      this.isShowOptions = false;
-      this.$emit('clear-select');
+    methods: {
+      toggleOptionsVisible() {
+        this.isShowOptions = !this.isShowOptions;
+      },
+      selectOption(option) {
+        this.isShowOptions = false;
+        this.$emit('update-select', option);
+      },
+      clearSelect() {
+        this.isShowOptions = false;
+        this.$emit('clear-select');
+      },
+      closeSelect() {
+        this.isShowOptions = false;
+      }
     },
-    closeSelect() {
-      this.isShowOptions = false;
-    }
-  },
-});
+  }
 </script>
 
 <style lang="scss" scoped>

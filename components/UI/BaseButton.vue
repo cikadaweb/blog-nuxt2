@@ -10,41 +10,35 @@
   </button>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'BaseButton',
-  props: {
-    color: {
-      type: String,
-      default: 'primary'
+<script>
+  export default {
+    name: 'BaseButton',
+    props: {
+      color: {
+        type: String,
+        default: 'primary'
+      },
+      disabled: {
+        type: Boolean,
+        required: false
+      },
+      type: {
+        type: String,
+        default: 'button',
+      },
     },
-    disabled: {
-      type: Boolean,
-      required: false
+    emits: ['click-on-button'],
+    computed: {
+      buttonColorClass() {
+        return 'btn_primary'
+      }
     },
-    type: {
-      type: String as () => 'button' | 'submit' | 'reset',
-      default: 'button',
+    methods: {
+      clickOnButton() {
+        this.$emit('click-on-button');
+      }
     },
-    disabled: {
-      type: Boolean,
-      required: false,
-    },
-  },
-  emits: ['click-on-button'],
-  computed: {
-    buttonColorClass() {
-      return 'btn_primary'
-    }
-  },
-  methods: {
-    clickOnButton(event: Event) {
-      this.$emit('click-on-button');
-    }
-  },
-});
+  }
 </script>
 
 <style lang="scss" scoped>

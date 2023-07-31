@@ -5,19 +5,17 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { IComment } from '@/store/posts';
 
-export default defineComponent({
-  name: 'CardList',
-  props: {
-    item: {
-      type: Object as PropType<IComment>,
-      required: true
+<script>
+  export default {
+    name: 'CommentItem',
+    props: {
+      item: {
+        type: Object,
+        required: true
+      },
     },
-  },
-});
+  }
 </script>
 
 <style lang="scss" scoped>

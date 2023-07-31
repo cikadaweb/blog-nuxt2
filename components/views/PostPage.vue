@@ -24,43 +24,39 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script>
 import AppDivider from '@/components/UI/BaseDivider.vue';
 import CreateComment from '~/components/form/CreateComment.vue';
 import CommentList from '~/components/comments/CommentList.vue';
 
-import { IPost, IComment } from '@/store/posts';
-import { IUser } from '@/store/users';
-
-export default defineComponent({
-  name: 'PostPage',
-  components: {
-    AppDivider, CreateComment, CommentList
-  },
-  computed: {
-    currentPost(): IPost {
-      return this.$store.getters['posts/getCurrentPost'];
+  export default {
+    name: 'PostPage',
+    components: {
+      AppDivider, CreateComment, CommentList
     },
-    currentPostUser(): IUser {
-      return this.$store.getters['users/getCurrentPostUser'];
+    computed: {
+      currentPost() {
+        return this.$store.getters['posts/getCurrentPost'];
+      },
+      currentPostUser() {
+        return this.$store.getters['users/getCurrentPostUser'];
+      },
+      currentPostComments() {
+        return this.$store.getters['posts/getCurrentPostComments'];
+      },
     },
-    currentPostComments(): IComment[] {
-      return this.$store.getters['posts/getCurrentPostComments'];
+    mounted() {
+      const postId = Number(this.$route.params.id);
+      if (!isNaN(postId)) {
+        this.fetchCurrentPost(postId);
+      }
     },
-  },
-  mounted() {
-    const postId = Number(this.$route.params.id);
-    if (!isNaN(postId)) {
-      this.fetchCurrentPost(postId);
-    }
-  },
-  methods: {
-    fetchCurrentPost(postId: number) {
-      this.$store.dispatch('posts/fetchCurrentPost', postId);
+    methods: {
+      fetchCurrentPost(postId) {
+        this.$store.dispatch('posts/fetchCurrentPost', postId);
+      },
     },
-  },
-});
+  }
 </script>
 
 <style lang="scss" scoped>

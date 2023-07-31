@@ -16,79 +16,66 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import BaseSelect from '@/components/UI/BaseSelect.vue';
 import CardList from '@/components/card/CardList.vue';
-import { defineComponent } from 'vue'
 
-import { IUser } from '@/store/users';
-import { IPost } from '@/store/posts';
-
-interface iSelectedUser {
-  id: null | number,
-  text: string
-}
-
-interface IState {
-  chosenUser: iSelectedUser
-}
-
-export default defineComponent({
-  name: 'HomePage',
-  components: {
-    BaseSelect, CardList
-  },
-  data() {
-    return {
-      chosenUser: {
-        id: null,
-        text: 'Выбрать'
-      } as iSelectedUser,
-    } as IState
-  },
-  computed: {
-    users(): IUser[] {
-      return this.$store.getters['users/getUsers'];
+  export default {
+    name: 'HomePage',
+    components: {
+      BaseSelect, CardList
     },
-    posts(): IPost[] {
-      return this.$store.getters['posts/getPosts'];
-    }
-  },
-  watch: {
-    chosenUser(value: iSelectedUser) {
-      if(value.id !== null) {
-        this.fetchPostsByUserId(value.id)
+    data() {
+      return {
+        chosenUser: {
+          id: null,
+          text: 'Выбрать'
+        },
       }
-    }
-  },
-  mounted() {
-    this.fetchUsers();
-    this.fetchPosts();
-  },
-  methods: {
-    fetchUsers() {
-      this.$store.dispatch('users/fetchUsers');
     },
-    fetchPosts() {
-      this.$store.dispatch('posts/fetchPosts');
+    computed: {
+      users() {
+        return this.$store.getters['users/getUsers'];
+      },
+      posts() {
+        return this.$store.getters['posts/getPosts'];
+      }
     },
-    fetchPostsByUserId(userId: number) {
-      this.$store.dispatch('posts/fetchPostsByUserId', userId);
+    watch: {
+      chosenUser(value) {
+        if(value.id !== null) {
+          this.fetchPostsByUserId(value.id)
+        }
+      }
     },
-    updateSelect(option: IUser) {
-      this.chosenUser = {
-        id: option.id,
-        text: option.name
-      };
+    mounted() {
+      this.fetchUsers();
+      this.fetchPosts();
     },
-    clearSelect() {
-      this.chosenUser = {
-        id: null,
-        text: 'Выбрать'
-      };
-    }
-  },
-});
+    methods: {
+      fetchUsers() {
+        this.$store.dispatch('users/fetchUsers');
+      },
+      fetchPosts() {
+        this.$store.dispatch('posts/fetchPosts');
+      },
+      fetchPostsByUserId(userId) {
+        this.$store.dispatch('posts/fetchPostsByUserId', userId);
+      },
+      updateSelect(option) {
+        this.chosenUser = {
+          id: option.id,
+          text: option.name
+        };
+      },
+      clearSelect() {
+        this.chosenUser = {
+          id: null,
+          text: 'Выбрать'
+        };
+      }
+    },
+  }
 </script>
 
 <style lang="scss" scoped>

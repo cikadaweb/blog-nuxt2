@@ -32,31 +32,34 @@
   </header>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
-
-  const navigationList = ref([
-    {
-      title: 'Главная',
-      to: {
-        name: '',
-      },
+<script>
+  export default {
+    name: 'TheHeader',
+    data() {
+      return {
+        isShowMobileMenu: false,
+        navigationList: [
+        {
+          title: 'Главная',
+          to: {
+            name: '',
+          },
+        },
+        ]
+      }
     },
-  ]);
-
-  const isShowMobileMenu = ref(false);
-
-  const toggleBurgerMenu = () => {
-    document.body.classList.toggle("body_lock");
-    isShowMobileMenu.value = !isShowMobileMenu.value;
-  };
-
-  const clickToLink = () => {
-    if(isShowMobileMenu.value) {
-      toggleBurgerMenu();
+    methods: {
+      toggleBurgerMenu() {
+        document.body.classList.toggle("body_lock");
+        this.isShowMobileMenu = !this.isShowMobileMenu;
+      },
+      clickToLink() {
+        if(this.isShowMobileMenu) {
+          this.toggleBurgerMenu();
+        }
+      }
     }
   }
-
 </script>
 
 <style lang="scss" scoped>

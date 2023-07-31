@@ -10,28 +10,24 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-import { IAlert } from '@/store/common';
-
-export default defineComponent({
-  name: 'AppAlert',
-  computed: {
-    alert(): IAlert {
-      return this.$store.getters['common/getAlert'];
+<script>
+  export default {
+    name: 'AppAlert',
+    computed: {
+      alert() {
+        return this.$store.getters['common/getAlert'];
+      },
+      alertColor() {
+        if (this.alert.status === 'danger') {
+          return 'alert_danger'
+        }
+        else if (this.alert.status === 'warning') {
+          return 'alert_warning'
+        }
+        return 'alert_success';
+      },
     },
-    alertColor() {
-      if (this.alert.status === 'danger') {
-        return 'alert_danger'
-      }
-      else if (this.alert.status === 'warning') {
-        return 'alert_warning'
-      }
-      return 'alert_success';
-    },
-  },
-});
+  }
 </script>
 
 <style lang="scss" scoped>

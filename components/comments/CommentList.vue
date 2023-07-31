@@ -7,27 +7,22 @@
   </ul>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import CommentItem from '@/components/comments/CommentItem.vue'
-
-import { IComment } from '@/store/posts';
-
-export default defineComponent({
-  name: 'CommentList',
-  components: {
-    CommentItem
-  },
-  props: {
-    items: {
-      type: Array as PropType<IComment[]>,
-      default() {
-        return []
-      },
-      required: true
+<script>
+  export default {
+    name: 'CommentList',
+    components: {
+      CommentItem
     },
-  },
-});
+    props: {
+      items: {
+        type: Array,
+        default() {
+          return []
+        },
+        required: true
+      },
+    },
+  }
 </script>
 
 <style lang="scss" scoped>

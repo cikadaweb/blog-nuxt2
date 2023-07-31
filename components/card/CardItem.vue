@@ -9,19 +9,16 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { IPost } from '@/store/posts';
-
-export default defineComponent({
-  name: 'CardList',
-  props: {
-    item: {
-      type: Object as PropType<IPost>,
-      required: true
+<script>
+  export default {
+    name: 'CardItem',
+    props: {
+      item: {
+        type: Object,
+        required: true
+      },
     },
-  },
-});
+  }
 </script>
 
 <style lang="scss" scoped>
