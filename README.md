@@ -1,8 +1,8 @@
 # blog-template-nuxt2
 
-#### This project is an application for interacting with the API [https://bandaumnikov.ru/api/test/site/get-index](https://jsonplaceholder.typicode.com/)
+#### This project is a basic template for a blog on Nuxt 2
 
-[Project link](https://main--elegant-conkies-ef2495.netlify.app/)
+[Project link]()
 
 ### Technologies
 
