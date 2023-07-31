@@ -1,10 +1,10 @@
 <template>
   <div class="card-item">
-    <router-link
+    <nuxt-link
       :to="`/posts/${item.id}`"
       class="card-item__header"
     >{{item.title}}
-    </router-link>
+    </nuxt-link>
     <p class="card-item__body">{{ item.body }}</p>
   </div>
 </template>
