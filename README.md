@@ -1,14 +1,12 @@
-# blog-template-nuxt2
+# blog-nuxt2
 
 #### This project is a basic template for a blog on Nuxt 2
-
-[Project link]()
 
 ### Technologies
 
 - Nuxt 2
 - SCSS
-- TypeScript  
+- JavaScript  
 - Axios
 
 ### UI components
